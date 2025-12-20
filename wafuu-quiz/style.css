@@ -1,0 +1,185 @@
+:root {
+    /* 和色の定義 */
+    --color-sumi: #1c1c1c;    /* 墨色 */
+    --color-go-fun: #f7f6f5;  /* 胡粉色 (Background) */
+    --color-shunari: #e60012; /* 朱色 (Accent) */
+    --color-ai: #00477d;      /* 藍色 (Secondary) */
+    --color-uguisu: #6c801a;  /* 鶯色 */
+    --color-kin: #c49a6a;     /* 金茶 */
+    
+    --font-main: 'Noto Serif JP', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-go-fun);
+    color: var(--color-sumi);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+#app {
+    max-width: 600px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    background: radial-gradient(circle at center, transparent 0%, rgba(255, 255, 255, 0.5) 100%),
+                url('https://www.transparenttextures.com/patterns/handmade-paper.png'); /* 和紙風テクスチャ */
+}
+
+/* 桜の背景装飾の代わりとしてのグラデーションやパターン */
+.sakura-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(var(--color-shunari) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.05;
+    z-index: -1;
+}
+
+.screen {
+    width: 100%;
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* タイトルスタイル */
+.miyabi-title {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--color-shunari);
+    margin-bottom: 10px;
+    letter-spacing: 0.2rem;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--color-ai);
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+/* ボタンスタイル */
+.miyabi-btn {
+    background: var(--color-sumi);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-family: var(--font-main);
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    box-shadow: 4px 4px 0px var(--color-kin);
+}
+
+.miyabi-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--color-kin);
+    background-color: var(--color-shunari);
+}
+
+.miyabi-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px var(--color-kin);
+}
+
+/* クイズ表示エリア */
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    font-weight: 700;
+    border-bottom: 2px solid var(--color-kin);
+    padding-bottom: 5px;
+}
+
+.question-container {
+    margin-bottom: 40px;
+}
+
+#question-text {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.option-btn {
+    background: white;
+    border: 2px solid var(--color-ai);
+    padding: 15px;
+    font-family: var(--font-main);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 8px;
+}
+
+.option-btn:hover {
+    background-color: var(--color-ai);
+    color: white;
+}
+
+.option-btn.correct {
+    background-color: var(--color-uguisu);
+    color: white;
+    border-color: var(--color-uguisu);
+}
+
+.option-btn.wrong {
+    background-color: var(--color-shunari);
+    color: white;
+    border-color: var(--color-shunari);
+}
+
+/* 結果表示 */
+.result-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--color-ai);
+}
+
+.final-score-container {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+#rank-message {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
